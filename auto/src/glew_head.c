@@ -15,7 +15,7 @@
 #include <string.h>  /* For memset */
 
 #if defined(GLEW_EGL)
-extern void * eglGetProcAddress (const char *procname);
+extern void (*eglGetProcAddress (const char *procname))();
 #elif defined(GLEW_REGAL)
 
 /* In GLEW_REGAL mode we call direcly into the linked
@@ -68,7 +68,7 @@ void* NSGLGetProcAddress (const GLubyte *name)
 {
   static void* image = NULL;
   void* addr;
-  if (NULL == image) 
+  if (NULL == image)
   {
     image = dlopen("/System/Library/Frameworks/OpenGL.framework/Versions/Current/OpenGL", RTLD_LAZY);
   }
